@@ -5,9 +5,10 @@
   "private": true,
   "dependencies": {
     "react": "file:../node_modules/react",
+    "react-app-polyfill": "^1.0.6",
     "react-dom": "file:../node_modules/react-dom",
-    "react-scripts": "file:../node_modules/react-scripts",
-    "react-grata": "file:.."
+    "react-grata": "file:..",
+    "react-scripts": "file:../node_modules/react-scripts"
   },
   "scripts": {
     "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
@@ -19,9 +20,12 @@
     "extends": "react-app"
   },
   "browserslist": [
+    "last 1 chrome version",
+    "last 1 firefox version",
+    "last 1 safari version",
+    "ie 11",
     ">0.2%",
     "not dead",
-    "not ie <= 11",
     "not op_mini all"
   ]
 }
