@@ -6,7 +6,11 @@ export interface CellArea {
   columnSpan?: number
 }
 
-export interface GridBaseProps {
+export interface BasicProps {
+  className?: string
+}
+
+export interface GridBaseProps extends BasicProps {
   rows?: string[]
   columns?: string[]
   rowGap?: number | string
@@ -14,13 +18,14 @@ export interface GridBaseProps {
 }
 
 export interface GridProps extends GridBaseProps {
-  layout: CellArea[]
-  matrix: (string | number)[][]
+  layout?: CellArea[]
+  matrix?: (string | number)[][]
 }
 
-export interface CellProps {
+export interface CellProps extends BasicProps {
   row?: number
   column?: number
   rowSpan?: number
   columnSpan?: number
+  id?: number | string
 }

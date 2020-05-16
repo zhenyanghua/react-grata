@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Grid, Cell } from 'react-grata'
+import './App.css'
 
 const App = () => {
   const matrix = [
@@ -14,7 +15,7 @@ const App = () => {
   const columnGap = "24px"
 
   return (
-    <Grid rowGap={rowGap} columnGap={columnGap} matrix={matrix}>
+    <Grid className="grid" rowGap={rowGap} columnGap={columnGap} matrix={matrix}>
       <Cell id={1}>1</Cell>
       <Cell id={2}>2</Cell>
       <Cell id={3}>3</Cell>

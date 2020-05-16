@@ -13,15 +13,32 @@ npm install --save react-grata
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React from 'react'
 
-import MyComponent from 'react-grata'
-import 'react-grata/dist/index.css'
+import { Grid, Cell } from 'react-grata'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const App = () => {
+  const matrix = [
+    [1, 1, 1],
+    [2, 3, 3],
+    [2, 5, 6],
+    [7, 7, 6],
+    [8, 8, 8],
+  ];
+  const rowGap = "10px"
+  const columnGap = "24px"
+
+  return (
+    <Grid rowGap={rowGap} columnGap={columnGap} matrix={matrix}>
+      <Cell id={1}>Component One</Cell>
+      <Cell id={2}>Component Two</Cell>
+      <Cell id={3}>Component Three</Cell>
+      <Cell id={5}>Component Five</Cell>
+      <Cell id={6}>Component Six</Cell>
+      <Cell id={7}>Component Seven</Cell>
+      <Cell id={8}>Component Eight</Cell>
+    </Grid>
+  )
 }
 ```
 

@@ -20,7 +20,7 @@ import { createStyle, insertRules, removeStyle } from './cssom'
  */
 export const GridBase: React.FC<GridBaseProps> = (props) => {
   let { rows, columns } = props
-  const { rowGap = 0, columnGap = 0, children } = props
+  const { rowGap = 0, columnGap = 0, children, className } = props
 
   const autoDimensions = deriveAutoDimensions(children as ReactElement)
 
@@ -45,16 +45,11 @@ export const GridBase: React.FC<GridBaseProps> = (props) => {
     -ms-grid-columns: ${msColumns};
   `
 
-  const className = random()
+  const gridClass = random()
   const rules = `
   .${className} {
-    /* non essential css */
-    border: 4px solid red;
-    /* non essential css */
-
     display: grid;
     display: -ms-grid;
-
   ${dynamicRules}
   }
  `
@@ -68,7 +63,7 @@ export const GridBase: React.FC<GridBaseProps> = (props) => {
     }
   }, [])
 
-  return <div className={className}>{props.children}</div>
+  return <div className={`${gridClass} ${className}`}>{children}</div>
 }
 
 export const Grid: React.FC<GridProps> = (props) => {
@@ -89,7 +84,14 @@ export const Grid: React.FC<GridProps> = (props) => {
 }
 
 export const Cell: React.FC<CellProps> = (props) => {
-  const { row, rowSpan = 1, column, columnSpan = 1 } = props
+  const {
+    row,
+    rowSpan = 1,
+    column,
+    columnSpan = 1,
+    children,
+    className
+  } = props
 
   if (!row || !column) {
     return null
@@ -110,15 +112,9 @@ export const Cell: React.FC<CellProps> = (props) => {
     -ms-grid-column: ${msColumn};
     -ms-grid-column-span: ${msColumnSpan};
   `
-  const className = random()
+  const cellClass = random()
   const rules = `
-  .${className} {
-    font-size: 2rem;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: green;
+  .${cellClass} {
   ${dynamicRules}
   }`
 
@@ -131,5 +127,5 @@ export const Cell: React.FC<CellProps> = (props) => {
     }
   }, [])
 
-  return <div className={className}>{props.children}</div>
+  return <div className={`${cellClass} ${className}`}>{children}</div>
 }
