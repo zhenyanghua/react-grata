@@ -1,23 +1,19 @@
-const STYLE_SHEET_ID = 'react-grata-style-sheet'
-
-export const createStyle = (): CSSStyleSheet => {
+export const createStyle = (): HTMLStyleElement => {
   const style = document.createElement('style')
-  style.setAttribute('id', STYLE_SHEET_ID)
   document.head.appendChild(style)
-
-  if (!style.sheet) {
-    throw new Error('Cannot inject new stylesheet')
-  }
-  return style.sheet as CSSStyleSheet
+  return style
 }
 
-export const removeStyle = () => {
-  const style = document.getElementById(STYLE_SHEET_ID)
+export const removeStyle = (style: HTMLStyleElement) => {
   if (style) {
     document.head.removeChild(style)
   }
 }
 
-export const insertRules = (sheet: CSSStyleSheet, rules: string) => {
-  sheet.insertRule(rules)
+export const insertRules = (style: HTMLStyleElement, rules: string) => {
+  const sheet = style.sheet as CSSStyleSheet
+  if (!sheet) {
+    throw new Error('Failed to find CSSStyleSheet from the style element')
+  }
+  sheet.insertRule(rules, 0)
 }

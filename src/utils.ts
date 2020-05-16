@@ -1,5 +1,15 @@
 import React from 'react'
-import { CellLayout } from './typings'
+import { CellArea } from './typings'
+
+const PREFIX = 'grata'
+
+/**
+ * Generate a random 5-character string with concatenated with prefix.
+ */
+export const random = (): string => {
+  const random = Math.random().toString(36).substr(2, 5)
+  return `${PREFIX}-${random}`
+}
 
 /**
  * Join array with a single space
@@ -75,7 +85,7 @@ export const deriveAutoDimensions = (
  * @param key
  * @return {{}}
  */
-export const arrayToObject = (arr: CellLayout[], key: string | number) => {
+export const arrayToObject = (arr: CellArea[], key: string | number) => {
   const obj = {}
   arr.forEach((x) => (obj[x[key]] = x))
   return obj
@@ -89,7 +99,7 @@ export const arrayToObject = (arr: CellLayout[], key: string | number) => {
  */
 export const assignCellLayout = (
   children: React.ReactElement,
-  layout: CellLayout[]
+  layout: CellArea[]
 ) => {
   const layoutById = arrayToObject(layout, 'id')
   return React.Children.map(children, (child) => {

@@ -1,10 +1,15 @@
 import React, { ReactElement, useLayoutEffect } from 'react'
-import { connect, deriveAutoDimensions, deriveMsDimension } from './utils'
-import { GridBaseProps } from './typings'
+import {
+  assignCellLayout,
+  connect,
+  deriveAutoDimensions,
+  deriveLayout,
+  deriveMsDimension,
+  random
+} from './utils'
+import { CellProps, GridBaseProps, GridProps } from './typings'
 import { createStyle, insertRules, removeStyle } from './cssom'
 
-const GRID_CLASS_NAME = 'grata-container'
-// const CELL_CLASS_NAME = 'grata-cell'
 /**
  * ie fake gap by creating extra track for layout, this behavior should
  * be managed separately for ie.
@@ -13,43 +18,6 @@ const GRID_CLASS_NAME = 'grata-container'
  * rows={["70px", "70px", "70px", "70px", "70px"]}
  * columns={["1fr", "1fr", "1fr"]}
  */
-//
-// export const GridBase = styled.div`
-//   /* non essential css */
-//   border: 4px solid red;
-//   /* non essential css */
-//
-//   display: grid;
-//   display: -ms-grid;
-//   ${(props) => {
-//     let { rows, columns } = props
-//     const { rowGap = 0, columnGap = 0, children } = props
-//
-//     const autoDimensions = deriveAutoDimensions(children)
-//
-//     if (!rows) {
-//       rows = autoDimensions.rows
-//     }
-//     if (!columns) {
-//       columns = autoDimensions.columns
-//     }
-//
-//     // Account for ie fake gap
-//     const msRows = deriveMsDimension(rows, rowGap)
-//     const msColumns = deriveMsDimension(columns, columnGap)
-//
-//     return css`
-//       grid-row-gap: ${rowGap};
-//       grid-column-gap: ${columnGap};
-//       grid-template-rows: ${connect(rows)};
-//       grid-template-columns: ${connect(columns)};
-//
-//       -ms-grid-rows: ${msRows};
-//       -ms-grid-columns: ${msColumns};
-//     `
-//   }}
-// `
-
 export const GridBase: React.FC<GridBaseProps> = (props) => {
   let { rows, columns } = props
   const { rowGap = 0, columnGap = 0, children } = props
@@ -77,8 +45,9 @@ export const GridBase: React.FC<GridBaseProps> = (props) => {
     -ms-grid-columns: ${msColumns};
   `
 
+  const className = random()
   const rules = `
-  .${GRID_CLASS_NAME} {
+  .${className} {
     /* non essential css */
     border: 4px solid red;
     /* non essential css */
@@ -91,13 +60,76 @@ export const GridBase: React.FC<GridBaseProps> = (props) => {
  `
 
   useLayoutEffect(() => {
-    const sheet = createStyle()
-    insertRules(sheet, rules)
+    const style = createStyle()
+    insertRules(style, rules)
 
     return () => {
-      removeStyle()
+      removeStyle(style)
     }
   }, [])
 
-  return <div className={GRID_CLASS_NAME}>{props.children}</div>
+  return <div className={className}>{props.children}</div>
+}
+
+export const Grid: React.FC<GridProps> = (props) => {
+  let { layout } = props
+  const { children, matrix, ...rest } = props
+
+  let cells = children
+
+  if (matrix) {
+    layout = deriveLayout(matrix)
+  }
+
+  if (layout) {
+    cells = assignCellLayout(children as ReactElement, layout)
+  }
+
+  return React.createElement(GridBase, { ...rest }, cells)
+}
+
+export const Cell: React.FC<CellProps> = (props) => {
+  const { row, rowSpan = 1, column, columnSpan = 1 } = props
+
+  if (!row || !column) {
+    return null
+  }
+
+  // Account for ie fake gap
+  const msRow = 2 * row - 1
+  const msRowSpan = 2 * rowSpan - 1
+  const msColumn = 2 * column - 1
+  const msColumnSpan = 2 * columnSpan - 1
+
+  const dynamicRules = `
+    grid-row: ${row} / span ${rowSpan};
+    grid-column: ${column} / span ${columnSpan};
+
+    -ms-grid-row: ${msRow};
+    -ms-grid-row-span: ${msRowSpan};
+    -ms-grid-column: ${msColumn};
+    -ms-grid-column-span: ${msColumnSpan};
+  `
+  const className = random()
+  const rules = `
+  .${className} {
+    font-size: 2rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+  ${dynamicRules}
+  }`
+
+  useLayoutEffect(() => {
+    const style = createStyle()
+    insertRules(style, rules)
+
+    return () => {
+      removeStyle(style)
+    }
+  }, [])
+
+  return <div className={className}>{props.children}</div>
 }

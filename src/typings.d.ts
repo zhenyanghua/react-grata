@@ -1,4 +1,4 @@
-export interface CellLayout {
+export interface CellArea {
   id: string | number
   row: number
   column: number
@@ -14,7 +14,7 @@ export interface GridBaseProps {
 }
 
 export interface GridProps extends GridBaseProps {
-  layout: CellLayout[]
+  layout: CellArea[]
   matrix: (string | number)[][]
 }
 
