@@ -42,7 +42,8 @@ const App = () => {
 }
 ```
 
-[More Usage](docs/usages.md)
+[More Usages](docs/usages.md)
+
 [API Reference](docs/API.md)
 
 ## License
