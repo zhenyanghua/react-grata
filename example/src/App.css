@@ -1,7 +1,7 @@
-.grid {
-  border: 4px solid red;
+.grata-grid {
+  border: 4px solid #00ffd5;
 }
-.grid > div {
+.grata-cell {
   font-size: 2rem;
   color: white;
   display: flex;

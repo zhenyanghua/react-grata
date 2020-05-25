@@ -1,7 +1,7 @@
 import React from 'react'
 import { CellArea } from './typings'
 
-const PREFIX = 'grata'
+export const PREFIX = 'grata'
 
 /**
  * Generate a random 5-character string with concatenated with prefix.

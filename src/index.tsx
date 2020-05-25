@@ -10,6 +10,11 @@ import {
 import { CellProps, GridBaseProps, GridProps } from './typings'
 import { createStyle, insertRules, removeStyle } from './cssom'
 
+export enum ClassName {
+  GRID = 'grata-gird',
+  CELL = 'grata-cell'
+}
+
 /**
  * ie fake gap by creating extra track for layout, this behavior should
  * be managed separately for ie.
@@ -53,6 +58,9 @@ export const GridBase: React.FC<GridBaseProps> = (props) => {
   ${dynamicRules}
   }
  `
+  const mergedClassName = `${gridClass} ${ClassName.GRID}${
+    className ? ` ${className}` : ''
+  }`
 
   useLayoutEffect(() => {
     const style = createStyle()
@@ -63,7 +71,7 @@ export const GridBase: React.FC<GridBaseProps> = (props) => {
     }
   }, [])
 
-  return <div className={`${gridClass} ${className}`}>{children}</div>
+  return <div className={mergedClassName}>{children}</div>
 }
 
 export const Grid: React.FC<GridProps> = (props) => {
@@ -117,15 +125,17 @@ export const Cell: React.FC<CellProps> = (props) => {
   .${cellClass} {
   ${dynamicRules}
   }`
+  const mergedClassName = `${cellClass} ${ClassName.CELL}${
+    className ? ` ${className}` : ''
+  }`
 
   useLayoutEffect(() => {
     const style = createStyle()
     insertRules(style, rules)
-
     return () => {
       removeStyle(style)
     }
   }, [])
 
-  return <div className={`${cellClass} ${className}`}>{children}</div>
+  return <div className={mergedClassName}>{children}</div>
 }

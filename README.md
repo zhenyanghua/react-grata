@@ -42,6 +42,9 @@ const App = () => {
 }
 ```
 
+[More Usage](docs/usages.md)
+[API Reference](docs/API.md)
+
 ## License
 
 MIT © [zhenyanghua](https://github.com/zhenyanghua)

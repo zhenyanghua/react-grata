@@ -15,5 +15,6 @@ export const insertRules = (style: HTMLStyleElement, rules: string) => {
   if (!sheet) {
     throw new Error('Failed to find CSSStyleSheet from the style element')
   }
-  sheet.insertRule(rules, 0)
+
+  sheet.insertRule(rules, sheet.cssRules.length)
 }
