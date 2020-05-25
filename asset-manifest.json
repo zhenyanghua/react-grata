@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-grata/static/css/main.571bd573.chunk.css",
+    "main.js": "/react-grata/static/js/main.d7aa1caf.chunk.js",
+    "main.js.map": "/react-grata/static/js/main.d7aa1caf.chunk.js.map",
+    "runtime-main.js": "/react-grata/static/js/runtime-main.c2f0a200.js",
+    "runtime-main.js.map": "/react-grata/static/js/runtime-main.c2f0a200.js.map",
+    "static/js/2.8e51ccd5.chunk.js": "/react-grata/static/js/2.8e51ccd5.chunk.js",
+    "static/js/2.8e51ccd5.chunk.js.map": "/react-grata/static/js/2.8e51ccd5.chunk.js.map",
+    "index.html": "/react-grata/index.html",
+    "precache-manifest.7cb7f05451da6eec7d83cbc2e9532665.js": "/react-grata/precache-manifest.7cb7f05451da6eec7d83cbc2e9532665.js",
+    "service-worker.js": "/react-grata/service-worker.js",
+    "static/css/main.571bd573.chunk.css.map": "/react-grata/static/css/main.571bd573.chunk.css.map",
+    "static/js/2.8e51ccd5.chunk.js.LICENSE.txt": "/react-grata/static/js/2.8e51ccd5.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c2f0a200.js",
+    "static/js/2.8e51ccd5.chunk.js",
+    "static/css/main.571bd573.chunk.css",
+    "static/js/main.d7aa1caf.chunk.js"
+  ]
+}
