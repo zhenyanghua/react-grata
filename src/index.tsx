@@ -11,7 +11,7 @@ import { CellProps, GridBaseProps, GridProps } from './typings'
 import { createStyle, insertRules, removeStyle } from './cssom'
 
 export enum ClassName {
-  GRID = 'grata-gird',
+  GRID = 'grata-grid',
   CELL = 'grata-cell'
 }
 
