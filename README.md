@@ -10,6 +10,8 @@
 - Decouple layout away from the component trees.
 - Enable dynamic layout generation.
 
+[![Demo](example/react-grata-demo.png)](https://zhenyanghua.github.io/react-grata/)
+
 [Demo](https://zhenyanghua.github.io/react-grata/)
 
 ## Install
