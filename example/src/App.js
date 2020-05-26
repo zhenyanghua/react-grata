@@ -26,7 +26,8 @@ const Code = () => (
       return (
         <Grid rowGap="12px" 
               columnGap="12px" 
-              matrix={matrix}>
+              matrix={matrix}
+              rows={['2rem', '2rem', 'fit-height', '2rem', '2rem']}>
           <Cell id={1}>1</Cell>
           <Cell id={2}>2</Cell>
           <Cell id={3}>3</Cell>
@@ -55,7 +56,8 @@ const Example = () => {
     <Grid className="grid-inside"
           rowGap={rowGap}
           columnGap={columnGap}
-          matrix={matrix}>
+          matrix={matrix}
+          rows={['2rem', '2rem', 'fit-height', '2rem', '2rem']}>
       <Cell id={1}>1</Cell>
       <Cell id={2}>2</Cell>
       <Cell id={3}>3</Cell>

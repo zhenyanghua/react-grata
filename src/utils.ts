@@ -1,5 +1,5 @@
 import React from 'react'
-import { CellArea } from './typings'
+import { CellArea, ColumnsReplacement, RowsReplacement } from './typings'
 
 export const PREFIX = 'grata'
 
@@ -148,4 +148,56 @@ export const deriveLayout = (matrix: (string | number)[][]) => {
   })
 
   return Object.keys(layout).map((id) => layout[id])
+}
+
+export enum CustomCss {
+  FitHeight = 'fit-height'
+}
+
+export interface GridReplacement extends RowsReplacement, ColumnsReplacement {}
+
+/**
+ * This is the filter chain for any template replacement
+ * @param gridReplacement
+ */
+export const replaceCustomGridTemplate = (
+  gridReplacement: GridReplacement
+): GridReplacement => {
+  return replaceCustomRows(gridReplacement)
+}
+
+/**
+ * This filter replace the 'fit-height' with the computed value height value
+ * so that it occupies the remainder height space of the container.
+ * @remarks the requirement for this filter to work is there must be up to
+ * one row that define 'fit-height' custom value.
+ * @param gridReplacement
+ * @example the following sets the first and last row to have a height of
+ * '200px', and the second row to occupy the remainder of the height space.
+ * `<Grid rows={['200px', 'fit-height', '200px']} {...otherProps} />`
+ */
+const replaceCustomRows = ({
+  rows,
+  rowGap,
+  ...rest
+}: GridReplacement): GridReplacement => {
+  const gaps = Array(rows.length - 1)
+    .fill(rowGap)
+    .join(' - ')
+  let otherRows = '0'
+  if (rows.includes(CustomCss.FitHeight)) {
+    otherRows = rows.filter((x) => x !== CustomCss.FitHeight).join(' - ')
+  }
+  const newRows = rows.map((size) => {
+    if (size === CustomCss.FitHeight) {
+      return `calc(100% - ${otherRows} - ${gaps})`
+    }
+    return size
+  })
+
+  return {
+    rows: newRows,
+    rowGap,
+    ...rest
+  }
 }

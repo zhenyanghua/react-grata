@@ -29,3 +29,13 @@ export interface CellProps extends BasicProps {
   columnSpan?: number
   id?: number | string
 }
+
+export interface RowsReplacement {
+  rows: string[]
+  rowGap: number | string
+}
+
+export interface ColumnsReplacement {
+  columns: string[]
+  columnGap: number | string
+}

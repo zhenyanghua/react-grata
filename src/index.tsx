@@ -5,7 +5,8 @@ import {
   deriveAutoDimensions,
   deriveLayout,
   deriveMsDimension,
-  random
+  random,
+  replaceCustomGridTemplate
 } from './utils'
 import { CellProps, GridBaseProps, GridProps } from './typings'
 import { createStyle, insertRules, removeStyle } from './cssom'
@@ -23,9 +24,9 @@ export enum ClassName {
  * rows={["70px", "70px", "70px", "70px", "70px"]}
  * columns={["1fr", "1fr", "1fr"]}
  */
-export const GridBase: React.FC<GridBaseProps> = (props) => {
-  let { rows, columns } = props
-  const { rowGap = 0, columnGap = 0, children, className } = props
+const GridBase: React.FC<GridBaseProps> = (props) => {
+  let { rows, columns, ...rest } = props
+  const { rowGap = 0, columnGap = 0, children, className } = rest
 
   const autoDimensions = deriveAutoDimensions(children as ReactElement)
 
@@ -35,6 +36,16 @@ export const GridBase: React.FC<GridBaseProps> = (props) => {
   if (!columns) {
     columns = autoDimensions.columns
   }
+  // Replace custom css values
+  const newGridTemplate = replaceCustomGridTemplate({
+    rows,
+    columns,
+    rowGap,
+    columnGap
+  })
+
+  rows = newGridTemplate.rows
+  columns = newGridTemplate.columns
 
   // Account for ie fake gap
   const msRows = deriveMsDimension(rows, rowGap)
