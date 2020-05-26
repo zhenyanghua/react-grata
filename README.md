@@ -4,6 +4,11 @@
 
 [![NPM](https://img.shields.io/npm/v/react-grata.svg)](https://www.npmjs.com/package/react-grata) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## Goals
+- Provide a simplified API to use CSS Grid.
+- Support IE 11 with the same API.
+- Decouple layout away from the component trees.
+- Enable dynamic layout generation.
 
 [Demo](https://zhenyanghua.github.io/react-grata/)
 

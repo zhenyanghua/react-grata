@@ -8,6 +8,7 @@
     "react-app-polyfill": "^1.0.6",
     "react-dom": "file:../node_modules/react-dom",
     "react-grata": "file:..",
+    "react-responsive": "^8.0.3",
     "react-scripts": "file:../node_modules/react-scripts"
   },
   "scripts": {

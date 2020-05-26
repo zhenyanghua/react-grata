@@ -52,15 +52,13 @@ export const GridBase: React.FC<GridBaseProps> = (props) => {
 
   const gridClass = random()
   const rules = `
-  .${className} {
+  .${gridClass} {
     display: grid;
     display: -ms-grid;
   ${dynamicRules}
   }
  `
-  const mergedClassName = `${gridClass} ${ClassName.GRID}${
-    className ? ` ${className}` : ''
-  }`
+  const mergedClassName = `${gridClass} ${className || ClassName.GRID}`
 
   useLayoutEffect(() => {
     const style = createStyle()
@@ -125,9 +123,7 @@ export const Cell: React.FC<CellProps> = (props) => {
   .${cellClass} {
   ${dynamicRules}
   }`
-  const mergedClassName = `${cellClass} ${ClassName.CELL}${
-    className ? ` ${className}` : ''
-  }`
+  const mergedClassName = `${cellClass} ${className || ClassName.CELL}`
 
   useLayoutEffect(() => {
     const style = createStyle()

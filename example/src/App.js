@@ -1,6 +1,7 @@
 import React from 'react'
-
 import { Grid, Cell } from 'react-grata'
+import { useMediaQuery } from 'react-responsive'
+
 import './App.css'
 
 const Header = () => (
@@ -15,28 +16,31 @@ const Code = () => (
     {`
     const App = () => {
       const matrix = [
-      [1, 1, 1],
-      [2, 3, 3],
-      [2, 5, 6],
-      [7, 7, 6],
-      [8, 8, 8],
+        [1, 1, 1],
+        [2, 3, 3],
+        [2, 5, 6],
+        [7, 7, 6],
+        [8, 8, 8],
       ];
 
       return (
-        <Grid rowGap="12px" columnGap="12px" matrix={matrix}>
-        <Cell id={1}>1</Cell>
-        <Cell id={2}>2</Cell>
-        <Cell id={3}>3</Cell>
-        <Cell id={5}>5</Cell>
-        <Cell id={6}>6</Cell>
-        <Cell id={7}>7</Cell>
-        <Cell id={8}>8</Cell>
+        <Grid rowGap="12px" 
+              columnGap="12px" 
+              matrix={matrix}>
+          <Cell id={1}>1</Cell>
+          <Cell id={2}>2</Cell>
+          <Cell id={3}>3</Cell>
+          <Cell id={5}>5</Cell>
+          <Cell id={6}>6</Cell>
+          <Cell id={7}>7</Cell>
+          <Cell id={8}>8</Cell>
         </Grid>
-      )
+      );
     }`}
   </pre>
 )
-const App = () => {
+
+const Example = () => {
   const matrix = [
     [1, 1, 1],
     [2, 3, 3],
@@ -44,23 +48,53 @@ const App = () => {
     [7, 7, 6],
     [8, 8, 8],
   ];
-  const rowGap = "12px"
-  const columnGap = "12px"
+  const rowGap = "12px";
+  const columnGap = "12px";
 
   return (
-    <>
-      <Header />
-      <Code />
-      <Grid className="grid" rowGap={rowGap} columnGap={columnGap} matrix={matrix}>
-        <Cell id={1}>1</Cell>
-        <Cell id={2}>2</Cell>
-        <Cell id={3}>3</Cell>
-        <Cell id={5}>5</Cell>
-        <Cell id={6}>6</Cell>
-        <Cell id={7}>7</Cell>
-        <Cell id={8}>8</Cell>
-      </Grid>
-    </>
+    <Grid className="grid-inside"
+          rowGap={rowGap}
+          columnGap={columnGap}
+          matrix={matrix}>
+      <Cell id={1}>1</Cell>
+      <Cell id={2}>2</Cell>
+      <Cell id={3}>3</Cell>
+      <Cell id={5}>5</Cell>
+      <Cell id={6}>6</Cell>
+      <Cell id={7}>7</Cell>
+      <Cell id={8}>8</Cell>
+    </Grid>
+  );
+}
+const App = () => {
+
+  const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
+  const matrixMobile = [
+    ['hd'],
+    ['cd'],
+    ['eg'],
+  ];
+  const matrixOthers = [
+    ['hd', 'hd'],
+    ['cd', 'eg'],
+  ];
+  const matrix = isMobile ? matrixMobile : matrixOthers;
+
+  return (
+    <Grid className="grid-outside"
+          rowGap="10px"
+          columnGap="10px"
+          matrix={matrix}>
+      <Cell className="cell" id="hd">
+        <Header/>
+      </Cell>
+      <Cell className="cell" id="cd">
+        <Code/>
+      </Cell>
+      <Cell className="cell" id="eg">
+        <Example/>
+      </Cell>
+    </Grid>
   )
 }
 

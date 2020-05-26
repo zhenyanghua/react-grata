@@ -5,7 +5,7 @@ The container for the layout.
 
 |`prop`| required | type | default | description|
 |---|---|---|---|---|
-|`className`|`false`|`string`|`''`|the name of the additional class to apply on `Grid`|
+|`className`|`false`|`string`|`grata-grid`|the class name to apply on `Grid`|
 |`rows`|`false`|`string[]`|`['auto'...]`|a list of string that describes the dimension of each row. the unit could be any css supported. If your target browser does not support a certain unit, you should avoid using it.|
 |`columns`|`false`|`string[]`|`['auto'...]`|a list of string that describes the dimension of each column. the unit could be any css supported. If your target browser does not support a certain unit, you should avoid using it.|
 |`rowGap`|`false`|`string[]`|`0`|the width between rows|
@@ -19,7 +19,7 @@ The cell is the smallest component in a `Grid`.
 
 |`prop`| required | type | default | description|
 |---|---|---|---|---|
-|`className`|`false`|`string`|`''`|the name of the additional class to apply on `Grid`|
+|`className`|`false`|`string`|`grata-cell`|the class name to apply on `Cell`|
 |`id`|`false`|`number`, `string`|`undefined`|the ident of the `Cell`, this must be defined when using `matrix` of `layout` on `Grid`.|
 |`row`|`false`|`number`|`0`|the start row number of the `Cell`, 1 based index.|
 |`column`|`false`|`number`|`0`|the start column number of the `Cell`, 1 based index.|
@@ -37,5 +37,4 @@ The object specification
 |`column`|`true`|`number`|`0`|the start column number of the `Cell`, 1 based index.|
 |`rowSpan`|`false`|`number`|`1`|the number of rows the `Cell` should span across.|
 |`columnSpan`|`false`|`number`|`1`|the number of columns the `Cell` should span across.|
-
 

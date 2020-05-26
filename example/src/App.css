@@ -1,11 +1,27 @@
-.grata-grid {
+.grid-inside {
   border: 4px solid #00ffd5;
 }
-.grata-cell {
+.grid-inside > .grata-cell {
   font-size: 2rem;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ff7204;
+}
+
+.grid-outside {
+  border: 4px solid #ff005b;
+}
+
+.grid-outside > .cell {
+  background: #fffca6;
+  padding: 1rem;
+}
+
+.grata-cell {
+  border: 2px dashed #ffffff;
+}
+.cell {
+  border: 2px dashed #a6a6a6;
 }
