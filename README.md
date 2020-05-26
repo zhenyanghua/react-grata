@@ -4,6 +4,9 @@
 
 [![NPM](https://img.shields.io/npm/v/react-grata.svg)](https://www.npmjs.com/package/react-grata) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+
+[Demo](https://zhenyanghua.github.io/react-grata/)
+
 ## Install
 
 ```bash
