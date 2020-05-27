@@ -5,11 +5,11 @@ import {
   deriveAutoDimensions,
   deriveLayout,
   deriveMsDimension,
-  random,
   replaceCustomGridTemplate
 } from './utils'
 import { CellProps, GridBaseProps, GridProps } from './typings'
-import { createStyle, insertRules, removeStyle } from './cssom'
+import { insertRules } from './cssom'
+import generateComponentId from './generateComponentId'
 
 export enum ClassName {
   GRID = 'grata-grid',
@@ -61,7 +61,7 @@ const GridBase: React.FC<GridBaseProps> = (props) => {
     -ms-grid-columns: ${msColumns};
   `
 
-  const gridClass = random()
+  const gridClass = generateComponentId(dynamicRules)
   const rules = `
   .${gridClass} {
     display: grid;
@@ -72,12 +72,7 @@ const GridBase: React.FC<GridBaseProps> = (props) => {
   const mergedClassName = `${gridClass} ${className || ClassName.GRID}`
 
   useLayoutEffect(() => {
-    const style = createStyle()
-    insertRules(style, rules)
-
-    return () => {
-      removeStyle(style)
-    }
+    insertRules(rules)
   })
 
   return <div className={mergedClassName}>{children}</div>
@@ -129,7 +124,7 @@ export const Cell: React.FC<CellProps> = (props) => {
     -ms-grid-column: ${msColumn};
     -ms-grid-column-span: ${msColumnSpan};
   `
-  const cellClass = random()
+  const cellClass = generateComponentId(dynamicRules)
   const rules = `
   .${cellClass} {
   ${dynamicRules}
@@ -137,11 +132,7 @@ export const Cell: React.FC<CellProps> = (props) => {
   const mergedClassName = `${cellClass} ${className || ClassName.CELL}`
 
   useLayoutEffect(() => {
-    const style = createStyle()
-    insertRules(style, rules)
-    return () => {
-      removeStyle(style)
-    }
+    insertRules(rules)
   })
 
   return <div className={mergedClassName}>{children}</div>

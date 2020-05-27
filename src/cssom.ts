@@ -1,9 +1,28 @@
-// todo - reuse one style element for all.
+/**
+ * Singleton class that provides the stylesheet
+ */
+class StyleSheetProvider {
+  private static INSTANCE: StyleSheetProvider
+  private readonly sheet: CSSStyleSheet
 
-export const createStyle = (): HTMLStyleElement => {
-  const style = document.createElement('style')
-  document.head.appendChild(style)
-  return style
+  constructor() {
+    const style = document.createElement('style')
+    style.setAttribute('data-grata', '')
+    document.head.appendChild(style)
+    this.sheet = style.sheet as CSSStyleSheet
+  }
+
+  static get instance() {
+    if (!StyleSheetProvider.INSTANCE) {
+      StyleSheetProvider.INSTANCE = new StyleSheetProvider()
+    }
+
+    return StyleSheetProvider.INSTANCE
+  }
+
+  get styleSheet(): CSSStyleSheet {
+    return this.sheet
+  }
 }
 
 export const removeStyle = (style: HTMLStyleElement) => {
@@ -12,8 +31,8 @@ export const removeStyle = (style: HTMLStyleElement) => {
   }
 }
 
-export const insertRules = (style: HTMLStyleElement, rules: string) => {
-  const sheet = style.sheet as CSSStyleSheet
+export const insertRules = (rules: string) => {
+  const sheet = StyleSheetProvider.instance.styleSheet
   if (!sheet) {
     throw new Error('Failed to find CSSStyleSheet from the style element')
   }
