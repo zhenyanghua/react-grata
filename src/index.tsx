@@ -78,7 +78,7 @@ const GridBase: React.FC<GridBaseProps> = (props) => {
     return () => {
       removeStyle(style)
     }
-  }, [])
+  })
 
   return <div className={mergedClassName}>{children}</div>
 }
@@ -142,7 +142,7 @@ export const Cell: React.FC<CellProps> = (props) => {
     return () => {
       removeStyle(style)
     }
-  }, [])
+  })
 
   return <div className={mergedClassName}>{children}</div>
 }

@@ -1,3 +1,5 @@
+// todo - reuse one style element for all.
+
 export const createStyle = (): HTMLStyleElement => {
   const style = document.createElement('style')
   document.head.appendChild(style)
