@@ -5,6 +5,8 @@ export const PREFIX = 'grata'
 
 /**
  * Generate a random 5-character string with concatenated with prefix.
+ * todo - replace it with a hash algorithm that is based on the serialized css
+ *  literal.
  */
 export const random = (): string => {
   const random = Math.random().toString(36).substr(2, 5)
