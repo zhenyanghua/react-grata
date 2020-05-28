@@ -12,7 +12,9 @@
 
 [![Demo](example/react-grata-demo.png)](https://zhenyanghua.github.io/react-grata/)
 
-[Demo](https://zhenyanghua.github.io/react-grata/)
+## Demos
+- [Basic](https://zhenyanghua.github.io/react-grata/)
+- [More Examples](https://zhenyanghua.github.io/responsive-layout-demo/)
 
 ## Install
 
