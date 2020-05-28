@@ -6,8 +6,8 @@ The container for the layout.
 |`prop`| required | type | default | description|
 |---|---|---|---|---|
 |`className`|`false`|`string`|`grata-grid`|The class name to apply on `Grid`|
-|`rows`|`false`|`string[]`|`['auto'...]`|A list of string that describes the dimension of each row. the unit could be any css supported. If your target browser does not support a certain unit, you should avoid using it.|
-|`columns`|`false`|`string[]`|`['auto'...]`|A list of string that describes the dimension of each column. the unit could be any css supported. If your target browser does not support a certain unit, you should avoid using it.|
+|`rows`|`false`|`string[]`|`['1fr'...]`|A list of string that describes the dimension of each row. the unit could be any css supported. If your target browser does not support a certain unit, you should avoid using it.|
+|`columns`|`false`|`string[]`|`['1fr'...]`|A list of string that describes the dimension of each column. the unit could be any css supported. If your target browser does not support a certain unit, you should avoid using it.|
 |`rowGap`|`false`|`string[]`|`0`|The width between rows|
 |`columnGap`|`false`|`string[]`|`0`|The width between columns|
 |`layout`|`false`|`CellArea[]`|`undefined`|An array of objects that each describe the location and span of the `Cell` in the `Grid`|
