@@ -80,13 +80,18 @@ const App = () => {
     ['hd', 'hd'],
     ['cd', 'eg'],
   ];
+  const rowsMobile = ["auto", "auto", "auto"];
+  const rowsOthers = ["auto", "auto"];
+
   const matrix = isMobile ? matrixMobile : matrixOthers;
+  const rows = isMobile ? rowsMobile : rowsOthers;
 
   return (
     <Grid className="grid-outside"
           rowGap="10px"
           columnGap="10px"
-          matrix={matrix}>
+          matrix={matrix}
+          rows={rows}>
       <Cell className="cell" id="hd">
         <Header/>
       </Cell>

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@babel/compat-data": "^7.10.0",
+    "@babel/compat-data": "^7.10.1",
     "react": "file:../node_modules/react",
     "react-app-polyfill": "^1.0.6",
     "react-dom": "file:../node_modules/react-dom",
