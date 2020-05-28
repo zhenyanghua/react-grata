@@ -1,18 +1,6 @@
 import React from 'react'
 import { CellArea, ColumnsReplacement, RowsReplacement } from './typings'
 
-export const PREFIX = 'grata'
-
-/**
- * Generate a random 5-character string with concatenated with prefix.
- * todo - replace it with a hash algorithm that is based on the serialized css
- *  literal.
- */
-export const random = (): string => {
-  const random = Math.random().toString(36).substr(2, 5)
-  return `${PREFIX}-${random}`
-}
-
 /**
  * Join array with a single space
  * @param arr
@@ -76,7 +64,7 @@ export const deriveAutoDimensions = (
 
   return {
     columns: Array(maxColumns).fill('1fr'),
-    rows: Array(maxRows).fill('auto')
+    rows: Array(maxRows).fill('1fr')
   }
 }
 

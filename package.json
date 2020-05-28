@@ -1,6 +1,6 @@
 {
   "name": "react-grata",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Light weight react grid layout component that supports IE 11. What you draw is what you get.",
   "keywords": [
     "css-grid",
