@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "08e351693b3c8c8fe3cd76bcc4618757",
+    "revision": "0974b1596aac56ccc3cde2cf458cc764",
     "url": "/react-grata/index.html"
   },
   {
-    "revision": "e8d4b99210cdb18bfb4b",
+    "revision": "59200b53565562b3ba5c",
     "url": "/react-grata/static/css/main.d50977aa.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-grata/static/js/2.165cc6bc.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e8d4b99210cdb18bfb4b",
-    "url": "/react-grata/static/js/main.0aa3c565.chunk.js"
+    "revision": "59200b53565562b3ba5c",
+    "url": "/react-grata/static/js/main.f446d7c3.chunk.js"
   },
   {
     "revision": "9a47b4cc2aa84c966997",
