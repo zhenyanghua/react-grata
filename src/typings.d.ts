@@ -22,12 +22,19 @@ export interface GridProps extends GridBaseProps {
   matrix?: (string | number)[][]
 }
 
-export interface CellProps extends BasicProps {
+export interface CellProps extends BasicProps, CellStyleProps {
   row?: number
   column?: number
   rowSpan?: number
   columnSpan?: number
   id?: number | string
+}
+
+export interface CellStyleProps {
+  maxContent?: boolean
+  centerJustified?: boolean
+  centerAligned?: boolean
+  center?: boolean
 }
 
 export interface RowsReplacement {

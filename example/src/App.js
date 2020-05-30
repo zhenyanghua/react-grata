@@ -79,9 +79,10 @@ const App = () => {
   const matrixOthers = [
     ['hd', 'hd'],
     ['cd', 'eg'],
+    ['ft', 'ft'],
   ];
   const rowsMobile = ["auto", "auto", "auto"];
-  const rowsOthers = ["auto", "auto"];
+  const rowsOthers = ["auto", "auto", "100px"];
 
   const matrix = isMobile ? matrixMobile : matrixOthers;
   const rows = isMobile ? rowsMobile : rowsOthers;
@@ -98,8 +99,11 @@ const App = () => {
       <Cell className="cell" id="cd">
         <Code/>
       </Cell>
-      <Cell className="cell" id="eg">
+      <Cell className="cell" id="eg" maxContent>
         <Example/>
+      </Cell>
+      <Cell className="cell" id="ft" center>
+        <button className="footer">Footer</button>
       </Cell>
     </Grid>
   )

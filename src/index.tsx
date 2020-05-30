@@ -102,7 +102,11 @@ export const Cell: React.FC<CellProps> = (props) => {
     column,
     columnSpan = 1,
     children,
-    className
+    className,
+    maxContent,
+    centerJustified,
+    centerAligned,
+    center
   } = props
 
   if (!row || !column) {
@@ -124,15 +128,33 @@ export const Cell: React.FC<CellProps> = (props) => {
     -ms-grid-column: ${msColumn};
     -ms-grid-column-span: ${msColumnSpan};
   `
-  const cellClass = generateComponentId(dynamicRules)
-  const rules = `
+  const alignmentRules = `
+    ${centerJustified || centerAligned || center ? 'display: flex;' : ''}
+    ${centerJustified || center ? 'justify-content: center;' : ''}
+    ${centerAligned || center ? 'align-items: center;' : ''}
+  `
+
+  const additionalRules = `
+    ${maxContent ? 'box-sizing: border-box; width: 100%; height: 100%;' : ''}
+  `
+  const cellClass = generateComponentId(
+    dynamicRules + alignmentRules + additionalRules
+  )
+
+  const layoutRules = `
   .${cellClass} {
   ${dynamicRules}
+  ${alignmentRules}
+  }`
+  const styleRules = `
+  .${cellClass} > * {
+  ${additionalRules}
   }`
   const mergedClassName = `${cellClass} ${className || ClassName.CELL}`
 
   useLayoutEffect(() => {
-    insertRules(rules)
+    insertRules(layoutRules)
+    insertRules(styleRules)
   })
 
   return <div className={mergedClassName}>{children}</div>
