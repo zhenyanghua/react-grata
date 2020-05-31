@@ -93,7 +93,7 @@ const App = () => {
           columnGap="10px"
           matrix={matrix}
           rows={rows}>
-      <Cell className="cell" id="hd">
+      <Cell className="cell" id="hd" center>
         <Header/>
       </Cell>
       <Cell className="cell" id="cd">
@@ -103,7 +103,14 @@ const App = () => {
         <Example/>
       </Cell>
       <Cell className="cell" id="ft" center>
-        <button className="footer">Footer</button>
+        <button className="footer">Two</button>
+        <button className="footer">Two</button>
+        <div>
+          <button className="footer">One</button>
+        </div>
+        <div>
+          <button className="footer">Two</button>
+        </div>
       </Cell>
     </Grid>
   )

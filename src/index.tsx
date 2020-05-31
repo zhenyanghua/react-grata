@@ -9,7 +9,7 @@ import {
 } from './utils'
 import { CellProps, GridBaseProps, GridProps } from './typings'
 import { insertRules } from './cssom'
-import generateComponentId from './generateComponentId'
+import generateClassName from './generateClassName'
 
 export enum ClassName {
   GRID = 'grata-grid',
@@ -61,7 +61,7 @@ const GridBase: React.FC<GridBaseProps> = (props) => {
     -ms-grid-columns: ${msColumns};
   `
 
-  const gridClass = generateComponentId(dynamicRules)
+  const gridClass = generateClassName(dynamicRules)
   const rules = `
   .${gridClass} {
     display: grid;
@@ -73,7 +73,7 @@ const GridBase: React.FC<GridBaseProps> = (props) => {
 
   useLayoutEffect(() => {
     insertRules(rules)
-  })
+  }, [rules])
 
   return <div className={mergedClassName}>{children}</div>
 }
@@ -97,13 +97,22 @@ export const Grid: React.FC<GridProps> = (props) => {
 
 export const Cell: React.FC<CellProps> = (props) => {
   const {
+    /**
+     * Dynamic rules
+     */
     row,
     rowSpan = 1,
     column,
     columnSpan = 1,
     children,
     className,
+    /**
+     * Additional rules
+     */
     maxContent,
+    /**
+     * Alignment rules
+     */
     centerJustified,
     centerAligned,
     center
@@ -119,6 +128,9 @@ export const Cell: React.FC<CellProps> = (props) => {
   const msColumn = 2 * column - 1
   const msColumnSpan = 2 * columnSpan - 1
 
+  /**
+   * Dynamic rules
+   */
   const dynamicRules = `
     grid-row: ${row} / span ${rowSpan};
     grid-column: ${column} / span ${columnSpan};
@@ -128,34 +140,69 @@ export const Cell: React.FC<CellProps> = (props) => {
     -ms-grid-column: ${msColumn};
     -ms-grid-column-span: ${msColumnSpan};
   `
+  /**
+   * Alignment rules
+   */
   const alignmentRules = `
-    ${centerJustified || centerAligned || center ? 'display: flex;' : ''}
-    ${centerJustified || center ? 'justify-content: center;' : ''}
-    ${centerAligned || center ? 'align-items: center;' : ''}
+    ${
+      centerJustified || center
+        ? 'justify-self: center; -ms-grid-column-align: center;'
+        : ''
+    }
+    ${
+      centerAligned || center
+        ? 'align-self: center; -ms-grid-row-align: center;'
+        : ''
+    }
   `
-
-  const additionalRules = `
+  /**
+   * Children rules
+   */
+  const childrenRules = `
     ${maxContent ? 'box-sizing: border-box; width: 100%; height: 100%;' : ''}
   `
-  const cellClass = generateComponentId(
-    dynamicRules + alignmentRules + additionalRules
-  )
 
-  const layoutRules = `
-  .${cellClass} {
+  /**
+   * Create class names
+   */
+  const cellDynamicClass = generateClassName(dynamicRules)
+  const cellAlignmentClass = generateClassName(alignmentRules)
+  const cellChildrenClass = generateClassName(childrenRules)
+
+  /**
+   * Assign rule names
+   */
+  const cellDynamicRules = `
+  .${cellDynamicClass} {
   ${dynamicRules}
+  }`
+  const cellAlignmentRules = `
+  .${cellAlignmentClass} {
   ${alignmentRules}
   }`
-  const styleRules = `
-  .${cellClass} > * {
-  ${additionalRules}
+  const cellChildrenRules = `
+  .${cellChildrenClass} > * {
+  ${childrenRules}
   }`
-  const mergedClassName = `${cellClass} ${className || ClassName.CELL}`
+
+  /**
+   * Merge class names
+   */
+  const mergedClassName = `${cellDynamicClass} ${cellAlignmentClass} ${cellChildrenClass} ${
+    className || ClassName.CELL
+  }`
 
   useLayoutEffect(() => {
-    insertRules(layoutRules)
-    insertRules(styleRules)
-  })
+    insertRules(cellDynamicRules)
+  }, [cellDynamicRules])
+
+  useLayoutEffect(() => {
+    insertRules(cellAlignmentRules)
+  }, [cellAlignmentRules])
+
+  useLayoutEffect(() => {
+    insertRules(cellChildrenRules)
+  }, [cellChildrenRules])
 
   return <div className={mergedClassName}>{children}</div>
 }

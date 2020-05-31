@@ -4,10 +4,10 @@
 .grid-inside > .grata-cell {
   font-size: 2rem;
   color: white;
+  background-color: #ff7204;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ff7204;
 }
 
 .grid-outside {
