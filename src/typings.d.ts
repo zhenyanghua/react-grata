@@ -32,9 +32,6 @@ export interface CellProps extends BasicProps, CellStyleProps {
 
 export interface CellStyleProps {
   maxContent?: boolean
-  centerJustified?: boolean
-  centerAligned?: boolean
-  center?: boolean
 }
 
 export interface RowsReplacement {

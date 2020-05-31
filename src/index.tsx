@@ -109,13 +109,7 @@ export const Cell: React.FC<CellProps> = (props) => {
     /**
      * Additional rules
      */
-    maxContent,
-    /**
-     * Alignment rules
-     */
-    centerJustified,
-    centerAligned,
-    center
+    maxContent
   } = props
 
   if (!row || !column) {
@@ -140,21 +134,7 @@ export const Cell: React.FC<CellProps> = (props) => {
     -ms-grid-column: ${msColumn};
     -ms-grid-column-span: ${msColumnSpan};
   `
-  /**
-   * Alignment rules
-   */
-  const alignmentRules = `
-    ${
-      centerJustified || center
-        ? 'justify-self: center; -ms-grid-column-align: center;'
-        : ''
-    }
-    ${
-      centerAligned || center
-        ? 'align-self: center; -ms-grid-row-align: center;'
-        : ''
-    }
-  `
+
   /**
    * Children rules
    */
@@ -166,7 +146,6 @@ export const Cell: React.FC<CellProps> = (props) => {
    * Create class names
    */
   const cellDynamicClass = generateClassName(dynamicRules)
-  const cellAlignmentClass = generateClassName(alignmentRules)
   const cellChildrenClass = generateClassName(childrenRules)
 
   /**
@@ -176,10 +155,7 @@ export const Cell: React.FC<CellProps> = (props) => {
   .${cellDynamicClass} {
   ${dynamicRules}
   }`
-  const cellAlignmentRules = `
-  .${cellAlignmentClass} {
-  ${alignmentRules}
-  }`
+
   const cellChildrenRules = `
   .${cellChildrenClass} > * {
   ${childrenRules}
@@ -188,17 +164,13 @@ export const Cell: React.FC<CellProps> = (props) => {
   /**
    * Merge class names
    */
-  const mergedClassName = `${cellDynamicClass} ${cellAlignmentClass} ${cellChildrenClass} ${
+  const mergedClassName = `${cellDynamicClass} ${cellChildrenClass} ${
     className || ClassName.CELL
   }`
 
   useLayoutEffect(() => {
     insertRules(cellDynamicRules)
   }, [cellDynamicRules])
-
-  useLayoutEffect(() => {
-    insertRules(cellAlignmentRules)
-  }, [cellAlignmentRules])
 
   useLayoutEffect(() => {
     insertRules(cellChildrenRules)

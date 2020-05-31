@@ -82,7 +82,7 @@ const App = () => {
     ['ft', 'ft'],
   ];
   const rowsMobile = ["auto", "auto", "auto"];
-  const rowsOthers = ["auto", "auto", "100px"];
+  const rowsOthers = ["auto", "auto", "140px"];
 
   const matrix = isMobile ? matrixMobile : matrixOthers;
   const rows = isMobile ? rowsMobile : rowsOthers;
@@ -93,23 +93,25 @@ const App = () => {
           columnGap="10px"
           matrix={matrix}
           rows={rows}>
-      <Cell className="cell" id="hd" center>
+      <Cell className="cell" id="hd">
         <Header/>
       </Cell>
       <Cell className="cell" id="cd">
         <Code/>
       </Cell>
-      <Cell className="cell" id="eg" maxContent>
+      <Cell className="cell" id="eg">
         <Example/>
       </Cell>
-      <Cell className="cell" id="ft" center>
-        <button className="footer">Two</button>
-        <button className="footer">Two</button>
-        <div>
-          <button className="footer">One</button>
-        </div>
+      <Cell className="cell" id="ft" maxContent>
         <div>
           <button className="footer">Two</button>
+          <button className="footer">Two</button>
+          <div>
+            <button className="footer">One</button>
+          </div>
+          <div>
+            <button className="footer">Two</button>
+          </div>
         </div>
       </Cell>
     </Grid>
